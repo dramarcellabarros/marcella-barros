@@ -334,6 +334,13 @@ document.querySelectorAll('img:not([loading])').forEach(img => {
     });
 
     // ----------------------------------------------------------
+    // Link do número WhatsApp na seção Contato
+    // ----------------------------------------------------------
+    document.getElementById('link-whatsapp-contato')?.addEventListener('click', function() {
+      track('click_agendar_consulta', { event_label: 'contato_numero' });
+    });
+
+    // ----------------------------------------------------------
     // FAQ CTA — "Perguntar pelo WhatsApp"
     // ----------------------------------------------------------
     document.getElementById('btn-agendar-faq')?.addEventListener('click', function() {
