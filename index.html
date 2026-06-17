@@ -39,9 +39,18 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": "https://dramarcellabarros.com.br/#website",
+        "url": "https://dramarcellabarros.com.br/",
+        "name": "Dra. Marcella Barros — Harmonização Facial",
+        "publisher": { "@id": "https://dramarcellabarros.com.br/#clinica" },
+        "inLanguage": "pt-BR"
+      },
+      {
         "@type": "HealthAndBeautyBusiness",
         "@id": "https://dramarcellabarros.com.br/#clinica",
-        "name": "Dra. Marcella Barros — Harmonização Facial",
+        "name": "Dra. Marcella Barros",
+        "alternateName": "Dra. Marcella Barros — Harmonização Facial",
         "description": "Biomédica (CRBM 39621) especializada em Harmonização Facial, Toxina Botulínica, Preenchimento, Bioestimuladores, Harmonização Glútea e PEIM em Tatuí, SP.",
         "url": "https://dramarcellabarros.com.br/",
         "telephone": "+5515997926411",
@@ -51,6 +60,7 @@
           "streetAddress": "Av. Cel. Firmo Viêira de Camargo, 970 B",
           "addressLocality": "Tatuí",
           "addressRegion": "SP",
+          "postalCode": "18270-770",
           "addressCountry": "BR"
         },
         "geo": {
@@ -75,7 +85,18 @@
         "sameAs": ["https://www.instagram.com/dramarcella.barros"],
         "priceRange": "$$",
         "currenciesAccepted": "BRL",
-        "paymentAccepted": "Cartão, Pix, Dinheiro"
+        "paymentAccepted": "Cartão, Pix, Dinheiro",
+        "areaServed": {
+          "@type": "City",
+          "name": "Tatuí",
+          "containedInPlace": {
+            "@type": "AdministrativeArea",
+            "name": "São Paulo",
+            "addressCountry": "BR"
+          }
+        },
+        "employee": { "@id": "https://dramarcellabarros.com.br/#profissional" },
+        "hasOfferCatalog": { "@id": "https://dramarcellabarros.com.br/#servicos" }
       },
       {
         "@type": "Person",
@@ -83,8 +104,134 @@
         "name": "Marcella Barros",
         "jobTitle": "Biomédica Estética",
         "description": "Biomédica (CRBM 39621) especializada em harmonização facial e estética avançada em Tatuí, SP.",
+        "hasCredential": {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "license",
+          "name": "CRBM 39621"
+        },
         "worksFor": { "@id": "https://dramarcellabarros.com.br/#clinica" },
         "sameAs": ["https://www.instagram.com/dramarcella.barros"]
+      },
+      {
+        "@type": "OfferCatalog",
+        "@id": "https://dramarcellabarros.com.br/#servicos",
+        "name": "Serviços de Estética Avançada",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Toxina Botulínica",
+              "description": "Suaviza linhas de expressão e rugas com precisão milimétrica. O resultado é uma aparência descansada e natural, sem apagar suas expressões.",
+              "areaServed": "Tatuí, SP",
+              "provider": { "@id": "https://dramarcellabarros.com.br/#clinica" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Preenchimento",
+              "description": "Restitui volume, define contornos e realça traços com ácido hialurônico. Resultados imediatos que respeitam a harmonia natural do seu rosto.",
+              "areaServed": "Tatuí, SP",
+              "provider": { "@id": "https://dramarcellabarros.com.br/#clinica" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Harmonização Facial",
+              "description": "Protocolo completo e personalizado que combina técnicas para equilibrar as proporções do rosto, realçar traços e devolver a autoestima.",
+              "areaServed": "Tatuí, SP",
+              "provider": { "@id": "https://dramarcellabarros.com.br/#clinica" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Bioestimuladores & Enzimas",
+              "description": "Estimulam a produção natural de colágeno e tratam gordura localizada com precisão. Resultados progressivos e duradouros.",
+              "areaServed": "Tatuí, SP",
+              "provider": { "@id": "https://dramarcellabarros.com.br/#clinica" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Harmonização Glútea",
+              "description": "Procedimento minimamente invasivo que utiliza bioestimuladores e preenchedores para definir, elevar e harmonizar a região glútea. Resultados naturais, sem cirurgia, com protocolo personalizado.",
+              "areaServed": "Tatuí, SP",
+              "provider": { "@id": "https://dramarcellabarros.com.br/#clinica" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "PEIM — Vasinhos",
+              "description": "Tratamento de telangiectasias com microescleroterapia. Elimina vasinhos superficiais nas pernas com precisão, segurança e sem necessidade de recuperação prolongada.",
+              "areaServed": "Tatuí, SP",
+              "provider": { "@id": "https://dramarcellabarros.com.br/#clinica" }
+            }
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://dramarcellabarros.com.br/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "A harmonização facial dói?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A maioria dos procedimentos é realizada com anestesia tópica (creme anestésico), o que torna o processo bastante confortável. Você pode sentir uma leve pressão ou formigamento, mas raramente dor. Antes de qualquer procedimento, conversamos sobre seu nível de sensibilidade para garantir o máximo de conforto."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qual o tempo de recuperação após os procedimentos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Depende do procedimento. A toxina botulínica e o preenchimento têm recuperação mínima, você pode voltar às atividades normais no mesmo dia, com possíveis pequenos hematomas que somem em 2 a 5 dias. Bioestimuladores podem ter um leve inchaço por até 48h. Em todos os casos, orientamos sobre os cuidados pós-procedimento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Os resultados ficam naturais?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim, e isso é a base do meu trabalho. A harmonização não é sobre mudar quem você é, é sobre realçar o que já existe. Utilizo técnicas conservadoras e personalizadas que valorizam suas características naturais, sem exageros ou artificialidade."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto tempo dura o efeito dos procedimentos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A toxina botulínica dura em média 4 a 6 meses. O preenchimento com ácido hialurônico dura de 12 a 18 meses dependendo da área. Os bioestimuladores têm efeito mais duradouro, de 18 a 24 meses, com ganho progressivo de colágeno. Durante a consulta, explico o tempo estimado para cada procedimento indicado para você."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como faço para agendar uma consulta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "É simples! Entre em contato pelo WhatsApp (15) 99792-6411 ou pelo Instagram @dramarcella.barros. Na primeira consulta, fazemos uma avaliação completa do seu rosto, conversamos sobre seus objetivos e elaboramos um protocolo personalizado. Sem compromisso, sem pressão."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quais produtos são utilizados nos procedimentos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Utilizo exclusivamente produtos certificados pela ANVISA, de marcas reconhecidas no mercado médico. Sua segurança é inegociável. Na consulta, apresento os materiais que serão utilizados e você pode tirar todas as dúvidas antes de qualquer procedimento."
+            }
+          }
+        ]
       }
     ]
   }
