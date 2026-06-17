@@ -95,6 +95,8 @@ strong { font-weight: 500; }
   color: var(--texto-medio);
   max-width: 52ch;
   line-height: 1.8;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ============================================================
