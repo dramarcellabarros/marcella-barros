@@ -292,6 +292,9 @@ document.querySelectorAll('img:not([loading])').forEach(img => {
     document.getElementById('btn-whatsapp-float')?.addEventListener('click', function() {
       track('click_agendar_consulta', { event_label: 'float_whatsapp' });
     });
+    document.getElementById('btn-whatsapp-balao')?.addEventListener('click', function() {
+      track('click_agendar_consulta', { event_label: 'float_balao' });
+    });
 
     // ----------------------------------------------------------
     // CTAs dos cards de serviço (click_whatsapp_servico)
@@ -358,4 +361,69 @@ document.querySelectorAll('img:not([loading])').forEach(img => {
     });
 
   }); // fim onReady
+})();
+
+
+/* ============================================================
+   11. WHATSAPP FLUTUANTE — balão de boas-vindas + origem da visita
+   ============================================================ */
+(function initWhatsappFloat() {
+
+  // Origem: "Vim pelo Instagram" só quando a visita veio mesmo do Instagram
+  // (link da bio com utm_source=instagram, navegador interno do app ou referrer)
+  var veioDoInstagram = false;
+  try {
+    veioDoInstagram = sessionStorage.getItem('origem_instagram') === '1';
+  } catch (e) {}
+  if (!veioDoInstagram) {
+    veioDoInstagram =
+      /utm_source=instagram/i.test(location.search) ||
+      /Instagram/.test(navigator.userAgent) ||
+      /instagram\.com/i.test(document.referrer);
+    if (veioDoInstagram) {
+      try { sessionStorage.setItem('origem_instagram', '1'); } catch (e) {}
+    }
+  }
+  if (!veioDoInstagram) {
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function(link) {
+      link.href = link.href.replace('Vim%20pelo%20Instagram', 'Vim%20pelo%20site');
+    });
+  }
+
+  // Balão: aparece 1,5s após abrir, some após 7s, ao rolar ou ao fechar.
+  // Só uma vez por visita.
+  var balao  = document.getElementById('whatsapp-balao');
+  var fechar = document.getElementById('whatsapp-balao-fechar');
+  if (!balao) return;
+
+  try {
+    if (sessionStorage.getItem('whatsapp_balao_visto') === '1') return;
+  } catch (e) {}
+
+  var scrollInicial = window.scrollY;
+  var timerSaida;
+
+  function esconder() {
+    clearTimeout(timerSaida);
+    window.removeEventListener('scroll', aoRolar);
+    balao.classList.remove('is-visible');
+    setTimeout(function() { balao.hidden = true; }, 400);
+  }
+
+  function aoRolar() {
+    if (Math.abs(window.scrollY - scrollInicial) > 80) esconder();
+  }
+
+  setTimeout(function() {
+    try { sessionStorage.setItem('whatsapp_balao_visto', '1'); } catch (e) {}
+    scrollInicial = window.scrollY;
+    balao.hidden = false;
+    void balao.offsetWidth; // força reflow para a transição de entrada acontecer
+    balao.classList.add('is-visible');
+    window.addEventListener('scroll', aoRolar, { passive: true });
+    timerSaida = setTimeout(esconder, 7000);
+  }, 1500);
+
+  fechar?.addEventListener('click', esconder);
+  document.getElementById('btn-whatsapp-balao')?.addEventListener('click', esconder);
 })();

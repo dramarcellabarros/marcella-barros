@@ -5,7 +5,8 @@
     'btn-agendar-faq':       'faq',
     'link-whatsapp-contato': 'contact',
     'btn-agendar-contato':   'contact',
-    'btn-whatsapp-float':    'floating'
+    'btn-whatsapp-float':    'floating',
+    'btn-whatsapp-balao':    'floating_bubble'
   };
 
   var locationBySection = {

@@ -829,25 +829,101 @@ strong { font-weight: 500; }
 /* ============================================================
    13. WHATSAPP FLUTUANTE
    ============================================================ */
-.whatsapp-float {
+.whatsapp-float-wrap {
   position: fixed;
-  bottom: 2rem;
   right: 2rem;
-  width: 54px;
+  bottom: max(2rem, env(safe-area-inset-bottom));
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+.whatsapp-float-wrap > * { pointer-events: auto; }
+
+/* Pílula: ícone verde (reconhecimento imediato) + texto sempre visível */
+.whatsapp-float {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   height: 54px;
+  padding: 0 1.4rem 0 0.4rem;
+  border-radius: var(--radius-full);
+  background-color: var(--texto-escuro);
+  border: 1px solid rgba(255, 253, 250, 0.18);
+  color: var(--branco-perola);
+  font-family: var(--font-corpo);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  box-shadow: 0 6px 24px rgba(58, 51, 48, 0.28);
+  transition: transform var(--trans-rapida), box-shadow var(--trans-rapida);
+}
+.whatsapp-float:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(58, 51, 48, 0.34);
+}
+.whatsapp-float__icone {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
   border-radius: 50%;
   background-color: #25D366;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-  z-index: 90;
-  transition: transform var(--trans-media), box-shadow var(--trans-media);
 }
-.whatsapp-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+
+/* Balão: aparece uma vez por visita e some sozinho */
+.whatsapp-balao {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.25rem;
+  max-width: 250px;
+  padding: 0.85rem 0.6rem 0.85rem 1rem;
+  background-color: var(--branco-perola);
+  border: 1px solid var(--creme-avela);
+  border-radius: var(--radius-md);
+  box-shadow: var(--sombra-media);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--trans-media), transform var(--trans-media);
+}
+.whatsapp-balao[hidden] { display: none; }
+.whatsapp-balao.is-visible { opacity: 1; transform: translateY(0); }
+/* Setinha apontando para o botão */
+.whatsapp-balao::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  right: 1.9rem;
+  width: 12px;
+  height: 12px;
+  background-color: var(--branco-perola);
+  border-right: 1px solid var(--creme-avela);
+  border-bottom: 1px solid var(--creme-avela);
+  transform: rotate(45deg);
+}
+.whatsapp-balao__texto {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--texto-escuro);
+}
+.whatsapp-balao__fechar {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  margin-top: -0.35rem;
+  border: 0;
+  background: none;
+  color: var(--texto-suave);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
 /* ============================================================
@@ -1217,7 +1293,8 @@ strong { font-weight: 500; }
   .footer__nav { gap: 1.25rem; }
 
   /* WhatsApp float */
-  .whatsapp-float { bottom: 1.25rem; right: 1.25rem; width: 48px; height: 48px; }
+  .whatsapp-float-wrap { right: 1rem; bottom: max(1rem, env(safe-area-inset-bottom)); }
+  .whatsapp-float { height: 52px; }
 }
 
 /* ============================================================
